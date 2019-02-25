@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>Swaksoft.Core</AssemblyName>
+    <RootNamespace>Swaksoft.Core</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>swaksoft.core.snk</AssemblyOriginatorKeyFile>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Swaksoft.Seedwork.Core</PackageId>
+    <Description>Core components for DDD application blocks</Description>
+    <Authors>Michelle Darlea</Authors>
+    <Company>Michelle</Company>
+    <Product>Swaksoft.Seedwork.Core</Product>
+    <Copyright>Copyright ©  2019</Copyright>
+    <PackageTags>Swaksoft, Core, DDD, Seedwork</PackageTags>
+    <Version>1.0.0.1</Version>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>Swaksoft.Application.Seedwork</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Swaksoft.Application.Seedwork.Core</PackageId>
+    <Version>1.0.0.0</Version>
+    <Authors>Michelle Darlea</Authors>
+    <Product>Swaksoft.Application.Seedwork.Core</Product>
+    <Description>Seedwork for the Application Block</Description>
+    <Copyright>Copyright ©  2019</Copyright>
+    <PackageTags>Swaksoft Seedwork</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Swaksoft.Domain.Seedwork.Core" Version="1.0.0" />
+    <PackageReference Include="Swaksoft.Infrastructure.Crosscutting.Core" Version="1.0.0.1" />
+  </ItemGroup>
+
+</Project>

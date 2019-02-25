@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AssemblyName>Swaksoft.Domain.Seedwork</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Swaksoft.Domain.Seedwork.Core</PackageId>
+    <Version>1.0.0.1</Version>
+    <Authors>Michelle Darlea</Authors>
+    <Company>Swaksoft</Company>
+    <Product>Swaksoft.Domain.Seedwork.Core</Product>
+    <Description>Seedwork for the Domain Application Block</Description>
+    <Copyright>Copyright ©  2019</Copyright>
+    <PackageTags>Swaksoft, Domain, Seedwork</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swaksoft.Seedwork.Core" Version="1.0.0.1" />
+  </ItemGroup>
+
+</Project>
