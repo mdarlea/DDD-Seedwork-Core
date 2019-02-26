@@ -7,7 +7,7 @@ namespace Swaksoft.Domain.Seedwork.Aggregates
     {
         protected Entity()
         {
-            Id = -1;
+            // Id = -1;
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

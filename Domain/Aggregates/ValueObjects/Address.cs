@@ -25,11 +25,20 @@ namespace Swaksoft.Domain.Seedwork.Aggregates.ValueObjects
             }
         }
 
-        #endregion equality
+		#endregion equality
 
-        public string StreetAddress { get; set; }
-        public string City { get; set; }
-        public State State { get; set; }
-        public string Zip { get; set; }
+		public Address(string streetAddress, string city, string state, string zip) {
+			StreetAddress = streetAddress;
+			City = city;
+			State = state;
+			Zip = zip;
+		}
+
+		public Address() { } //required for EF
+
+		public string StreetAddress { get; private set; }
+        public string City { get; private set; }
+        public string State { get; private set; }
+        public string Zip { get; private set; }
     }
 }

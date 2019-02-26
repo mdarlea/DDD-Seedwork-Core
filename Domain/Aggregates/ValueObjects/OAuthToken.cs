@@ -24,7 +24,7 @@ namespace Swaksoft.Domain.Seedwork.Aggregates.ValueObjects
             }
         }
 
-        private OAuthToken() { } //required for EF
+        public OAuthToken() { } //required for EF
 
         [Required]
 		[MaxLength(250)]

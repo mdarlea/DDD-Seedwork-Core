@@ -5,7 +5,7 @@
     <AssemblyName>Swaksoft.Domain.Seedwork</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Swaksoft.Domain.Seedwork.Core</PackageId>
-    <Version>1.0.0.1</Version>
+    <Version>1.0.0.3</Version>
     <Authors>Michelle Darlea</Authors>
     <Company>Swaksoft</Company>
     <Product>Swaksoft.Domain.Seedwork.Core</Product>

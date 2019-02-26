@@ -29,10 +29,23 @@ namespace Swaksoft.Domain.Seedwork.Aggregates.ValueObjects
             }
         }
 
-        #endregion equality
+		#endregion equality
 
-        public string StreetAddress2 { get; set; }
-        public string County { get; set; }
-        public string Country { get; set; }
+		public LongAddress(string streetAddress, string streetAddress2, string city, string state, string zip, string county, string country)
+				: base(streetAddress, city, state, zip)
+		{
+			StreetAddress2 = streetAddress2;
+			County = county;
+			Country = country;
+		}
+
+		public LongAddress() //required for EF
+			: base(null, null, null, null)
+		{
+		}
+
+        public string StreetAddress2 { get; private set; }
+        public string County { get; private set; }
+        public string Country { get; private set; }
     }
 }

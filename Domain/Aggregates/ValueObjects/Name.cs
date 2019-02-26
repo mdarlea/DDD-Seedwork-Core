@@ -36,7 +36,7 @@ namespace Swaksoft.Domain.Seedwork.Aggregates.ValueObjects
             MiddleName = middleName;
         }
 
-        private Name() { } //required for EF
+        public Name() { } //required for EF
 
         [Required]
         [MaxLength(150)]
