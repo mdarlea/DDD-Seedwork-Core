@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Swaksoft.Domain.Seedwork.Events
 {
     public interface IHandleDomainEvents
     {
-        void Handle<T>(T domainEvent) where T:IDomainEvent;
+        Task Handle(IDomainEvent domainEvent);
     }
 }

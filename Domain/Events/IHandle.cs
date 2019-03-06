@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Threading.Tasks;
 
 namespace Swaksoft.Domain.Seedwork.Events
 {
@@ -9,6 +10,6 @@ namespace Swaksoft.Domain.Seedwork.Events
 
     public interface IHandle<T> :IHandle where T : IDomainEvent
     {
-        void Handle(T args);
+        Task Handle(T args);
     }
 }

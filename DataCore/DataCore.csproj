@@ -5,7 +5,7 @@
     <AssemblyName>Swaksoft.Infrastructure.Data.Seedwork</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Swaksoft.Infrastructure.Data.Seedwork.Core</PackageId>
-    <Version>1.0.0.1</Version>
+    <Version>1.0.1.1</Version>
     <Authors>Michelle Darlea</Authors>
     <Product>Swaksoft.Infrastructure.Data.Seedwork.Core</Product>
     <Description>Seedwork for the Infrastructure Data Application Block</Description>
@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.2" />
-    <PackageReference Include="Swaksoft.Domain.Seedwork.Core" Version="1.0.0.1" />
+    <PackageReference Include="Swaksoft.Domain.Seedwork.Core" Version="1.0.1.1" />
     <PackageReference Include="Swaksoft.Infrastructure.Crosscutting.Core" Version="1.0.0.1" />
   </ItemGroup>
 

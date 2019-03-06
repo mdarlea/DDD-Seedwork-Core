@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Swaksoft.Application.Seedwork.Validation;
 using Swaksoft.Core.Dto;
 using Swaksoft.Domain.Seedwork;
 using Swaksoft.Domain.Seedwork.Aggregates;
@@ -57,7 +55,7 @@ namespace Swaksoft.Application.Seedwork.Extensions
 
             if (!isValid) return new EntityResult<T>(entityValidator, entity, false);
 
-            using (var transaction = repository.BeginTransaction())
+            using (var transaction = repository.GetDbContext())
             {
                 repository.Add(entity);
                 await transaction.CommitAsync();
@@ -76,7 +74,7 @@ namespace Swaksoft.Application.Seedwork.Extensions
 
             if (!isValid) return new EntityResult<T>(entityValidator, entity, false);
 
-            using (var transaction = repository.BeginTransaction())
+            using (var transaction = repository.GetDbContext())
             {
                 repository.Add(entity);
                 transaction.Commit();    
@@ -84,10 +82,10 @@ namespace Swaksoft.Application.Seedwork.Extensions
             return new EntityResult<T>(entityValidator,entity,true);
         }
 
-        public static IDbContextAdapter BeginTransaction<TEntity>(this IRepository<TEntity> repository)
+        public static IDbContextAdapter GetDbContext<TEntity>(this IRepository<TEntity> repository)
             where TEntity : class
         {
-            return repository.UnitOfWork.BeginTransaction();
+            return repository.UnitOfWork.GetDbContext();
         }
     }
 }

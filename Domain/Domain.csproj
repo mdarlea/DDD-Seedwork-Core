@@ -5,7 +5,7 @@
     <AssemblyName>Swaksoft.Domain.Seedwork</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Swaksoft.Domain.Seedwork.Core</PackageId>
-    <Version>1.0.0.3</Version>
+    <Version>1.0.1.1</Version>
     <Authors>Michelle Darlea</Authors>
     <Company>Swaksoft</Company>
     <Product>Swaksoft.Domain.Seedwork.Core</Product>
@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Swaksoft.Seedwork.Core" Version="1.0.0.1" />
   </ItemGroup>
 

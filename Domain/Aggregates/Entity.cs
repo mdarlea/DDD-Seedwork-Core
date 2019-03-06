@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Swaksoft.Domain.Seedwork.Events;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Swaksoft.Domain.Seedwork.Aggregates
@@ -44,11 +46,30 @@ namespace Swaksoft.Domain.Seedwork.Aggregates
             get; protected set; 
         }
 
-        /// <summary>
-        /// Check if this entity is transient, ie, without identity at this moment
-        /// </summary>
-        /// <returns>True if entity is transient, else false</returns>
-        public virtual bool IsTransient()
+		private List<IDomainEvent> domainEvents;
+		public IReadOnlyCollection<IDomainEvent> DomainEvents => domainEvents?.AsReadOnly();
+
+		public void AddDomainEvent(IDomainEvent eventItem)
+		{
+			domainEvents = domainEvents ?? new List<IDomainEvent>();
+			domainEvents.Add(eventItem);
+		}
+
+		public void RemoveDomainEvent(IDomainEvent eventItem)
+		{
+			domainEvents?.Remove(eventItem);
+		}
+
+		public void ClearDomainEvents()
+		{
+			domainEvents?.Clear();
+		}
+
+		/// <summary>
+		/// Check if this entity is transient, ie, without identity at this moment
+		/// </summary>
+		/// <returns>True if entity is transient, else false</returns>
+		public virtual bool IsTransient()
         {
             return Id.Equals(default(TId));
         }       
