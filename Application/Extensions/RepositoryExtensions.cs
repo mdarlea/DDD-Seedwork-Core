@@ -55,11 +55,11 @@ namespace Swaksoft.Application.Seedwork.Extensions
 
             if (!isValid) return new EntityResult<T>(entityValidator, entity, false);
 
-            using (var transaction = repository.GetDbContext())
-            {
-                repository.Add(entity);
-                await transaction.CommitAsync();
-            }
+			var context = repository.UnitOfWork;
+
+			repository.Add(entity);
+            await context.SaveChangesAsync();
+            
             return new EntityResult<T>(entityValidator, entity, true);
         }
 
@@ -74,18 +74,11 @@ namespace Swaksoft.Application.Seedwork.Extensions
 
             if (!isValid) return new EntityResult<T>(entityValidator, entity, false);
 
-            using (var transaction = repository.GetDbContext())
-            {
-                repository.Add(entity);
-                transaction.Commit();    
-            }
+			var context = repository.UnitOfWork;
+            repository.Add(entity);
+            context.SaveChanges();    
+            
             return new EntityResult<T>(entityValidator,entity,true);
-        }
-
-        public static IDbContextAdapter GetDbContext<TEntity>(this IRepository<TEntity> repository)
-            where TEntity : class
-        {
-            return repository.UnitOfWork.GetDbContext();
         }
     }
 }

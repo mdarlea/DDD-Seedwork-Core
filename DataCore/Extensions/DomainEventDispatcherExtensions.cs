@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Swaksoft.Domain.Seedwork.Aggregates;
-using Swaksoft.Domain.Seedwork.Events;
 using System;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,7 @@ namespace DataCore.Extensions
 {
 	public static class DomainEventDispatcherExtensions
 	{
-		public static async Task DispatchDomainEventsAsync(this IHandleDomainEvents dispatcher, DbContext ctx) {
+		public static async Task DispatchDomainEventsAsync(this IMediator dispatcher, DbContext ctx) {
 			if (dispatcher == null)
 			{
 				throw new ArgumentNullException(nameof(dispatcher));
@@ -34,7 +34,7 @@ namespace DataCore.Extensions
 
 			var tasks = domainEvents
 				.Select(async (domainEvent) => {
-					await dispatcher.Handle(domainEvent);
+					await dispatcher.Publish(domainEvent);
 				});
 
 			await Task.WhenAll(tasks);
