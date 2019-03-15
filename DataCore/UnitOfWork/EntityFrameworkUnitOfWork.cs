@@ -21,8 +21,6 @@ namespace Swaksoft.Infrastructure.Data.Seedwork.UnitOfWork
 
 		public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
 		{
-			var result = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
-
 			// Dispatch Domain Events collection. 
 			// Choices:
 			// A) Right BEFORE committing data (EF SaveChanges) into the DB will make a single transaction including  
@@ -30,6 +28,8 @@ namespace Swaksoft.Infrastructure.Data.Seedwork.UnitOfWork
 			// B) Right AFTER committing data (EF SaveChanges) into the DB will make multiple transactions. 
 			// You will need to handle eventual consistency and compensatory actions in case of failures in any of the Handlers. 
 			await domainEventsDispatcher.DispatchDomainEventsAsync(this);
+
+			var result = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
 
 			return result;
 		}
