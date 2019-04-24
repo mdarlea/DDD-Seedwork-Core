@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Swaksoft.Domain.Seedwork.Events;
+﻿using Swaksoft.Domain.Seedwork.Events;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -47,16 +46,16 @@ namespace Swaksoft.Domain.Seedwork.Aggregates
             get; protected set; 
         }
 
-		private List<INotification> domainEvents;
-		public IReadOnlyCollection<INotification> DomainEvents => domainEvents?.AsReadOnly();
+		private List<IDomainEvent> domainEvents;
+		public IReadOnlyCollection<IDomainEvent> DomainEvents => domainEvents?.AsReadOnly();
 
-		public void AddDomainEvent(INotification eventItem)
+		public void AddDomainEvent(IDomainEvent eventItem)
 		{
-			domainEvents = domainEvents ?? new List<INotification>();
+			domainEvents = domainEvents ?? new List<IDomainEvent>();
 			domainEvents.Add(eventItem);
 		}
 
-		public void RemoveDomainEvent(INotification eventItem)
+		public void RemoveDomainEvent(IDomainEvent eventItem)
 		{
 			domainEvents?.Remove(eventItem);
 		}

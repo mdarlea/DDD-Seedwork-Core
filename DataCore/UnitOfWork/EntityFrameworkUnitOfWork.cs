@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using DataCore.Extensions;
-using MediatR;
+using Domain.Events;
 using Microsoft.EntityFrameworkCore;
 using Swaksoft.Domain.Seedwork;
 
@@ -10,9 +10,9 @@ namespace Swaksoft.Infrastructure.Data.Seedwork.UnitOfWork
 {
     public abstract class EntityFrameworkUnitOfWork : DbContext, IUnitOfWork
     {        
-		private readonly IMediator domainEventsDispatcher;
+		private readonly IDomainMediator domainEventsDispatcher;
 
-		protected EntityFrameworkUnitOfWork(DbContextOptions option, IMediator domainEventsDispatcher) 
+		protected EntityFrameworkUnitOfWork(DbContextOptions option, IDomainMediator domainEventsDispatcher) 
 			: base(option)
         {   
 			this.domainEventsDispatcher = domainEventsDispatcher ?? throw new System.ArgumentNullException(nameof(domainEventsDispatcher));
@@ -21,15 +21,16 @@ namespace Swaksoft.Infrastructure.Data.Seedwork.UnitOfWork
 
 		public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default(CancellationToken))
 		{
-			// Dispatch Domain Events collection. 
-			// Choices:
-			// A) Right BEFORE committing data (EF SaveChanges) into the DB will make a single transaction including  
-			// side effects from the domain event handlers which are using the same DbContext with "InstancePerLifetimeScope" or "scoped" lifetime
-			// B) Right AFTER committing data (EF SaveChanges) into the DB will make multiple transactions. 
-			// You will need to handle eventual consistency and compensatory actions in case of failures in any of the Handlers. 
-			await domainEventsDispatcher.DispatchDomainEventsAsync(this);
+			var domainEvents = this.GetDomainEvents();
 
 			var result = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+
+			var tasks = domainEvents
+				.Select(async (domainEvent) => {
+					await domainEventsDispatcher.Publish(domainEvent);
+				});
+
+			await Task.WhenAll(tasks);
 
 			return result;
 		}
