@@ -6,8 +6,8 @@ namespace Domain.Events
 {
 	public interface IDomainMediator
 	{
-		Task Publish<TNotification>(TNotification notification,
-			CancellationToken cancellationToken = default)
+		Task Publish(IDomainEvent notification, CancellationToken cancellationToken = default);
+		Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = default)
 			where TNotification : IDomainEvent;
 	}
 }
