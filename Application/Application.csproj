@@ -5,7 +5,7 @@
     <AssemblyName>Swaksoft.Application.Seedwork</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Swaksoft.Application.Seedwork.Core</PackageId>
-    <Version>1.0.2.3</Version>
+    <Version>1.0.3.1</Version>
     <Authors>Michelle Darlea</Authors>
     <Product>Swaksoft.Application.Seedwork.Core</Product>
     <Description>Seedwork for the Application Block</Description>
@@ -15,11 +15,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="AutoMapper" Version="8.1.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.3.0" />
     <PackageReference Include="MediatR" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
     <PackageReference Include="Swaksoft.Domain.Seedwork.Core" Version="1.0.2.2" />
-    <PackageReference Include="Swaksoft.Infrastructure.Crosscutting.Core" Version="1.0.0.1" />
+    <PackageReference Include="Swaksoft.Infrastructure.Crosscutting.Core" Version="1.0.0.2" />
   </ItemGroup>
 
 </Project>

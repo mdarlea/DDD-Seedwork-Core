@@ -1,31 +1,31 @@
 ﻿using System;
-using Swaksoft.Infrastructure.Crosscutting.Logging;
+using Microsoft.Extensions.Logging;
 using Swaksoft.Core.Dto;
 
 namespace Swaksoft.Application.Seedwork.Services
 {
     public abstract class AppServiceBase<T> : IDisposable
     {
-        private static readonly Lazy<ILogger> _logger = new Lazy<ILogger>(LoggerLocator.CreateLog<T>);
+		private readonly ILogger<T> logger;		
 
-        protected static ILogger GetLog()
-        {
-            return _logger.Value;
-        }
+		protected AppServiceBase(ILogger<T> logger) {
+			this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+		}
+		
 
-        protected static TResult Failed<TResult>(string errorMessage, params object[] args)
+        protected TResult Failed<TResult>(string errorMessage, params object[] args)
            where TResult : ActionResult, new()
         {
             return ErrorResult<TResult>(ActionResultCode.Failed, errorMessage, args);
         }
 
-        protected static TResult Error<TResult>(string errorMessage, params object[] args)
+        protected TResult Error<TResult>(string errorMessage, params object[] args)
            where TResult : ActionResult, new()
         {
             return ErrorResult<TResult>(ActionResultCode.Errored, errorMessage, args);
         }
 
-        protected static TResult ErrorResult<TResult>(ActionResultCode resultCode, string errorMessage, params object[] args)
+        protected TResult ErrorResult<TResult>(ActionResultCode resultCode, string errorMessage, params object[] args)
             where TResult : ActionResult, new()
         {
             var actionResult = new TResult
@@ -33,7 +33,7 @@ namespace Swaksoft.Application.Seedwork.Services
                 Status = resultCode,
                 Message = string.Format(errorMessage, args)
             };
-            GetLog().LogError(actionResult.Message);
+            logger.LogError(actionResult.Message);
             return actionResult;
         }
 

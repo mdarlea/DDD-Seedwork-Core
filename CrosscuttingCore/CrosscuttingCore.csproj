@@ -6,7 +6,7 @@
     <RootNamespace>Swaksoft.Infrastructure.Crosscutting</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Swaksoft.Infrastructure.Crosscutting.Core</PackageId>
-    <Version>1.0.0.1</Version>
+    <Version>1.0.0.2</Version>
     <Authors>Michelle Darlea</Authors>
     <Company>SwaksoftMichelle Darlea</Company>
     <Product>Swaksoft.Infrastructure.Crosscutting.Core</Product>

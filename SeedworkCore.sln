@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{8200F6BA-7298-4925-BF8F-EE28FBF405EF}"
 EndProject
@@ -11,17 +11,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Infrastructure", "3. Infrastructure", "{B19A758D-534A-448A-B54D-0A02EE9252F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{5F081D61-C533-4931-9BA7-EFAD45727EC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{5F081D61-C533-4931-9BA7-EFAD45727EC4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Crosscutting", "Crosscutting", "{FEA2091A-2484-4FDD-A2DC-ABFACB646487}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrosscuttingCore", "CrosscuttingCore\CrosscuttingCore.csproj", "{17B39E81-A47B-4461-8047-7BB54A18F684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrosscuttingCore", "CrosscuttingCore\CrosscuttingCore.csproj", "{17B39E81-A47B-4461-8047-7BB54A18F684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{AD7F2E60-68D7-470B-8A64-6C03E97C8E24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{AD7F2E60-68D7-470B-8A64-6C03E97C8E24}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{A1505AAA-7DE8-4E2D-AF0C-AA143A7A204E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataCore", "DataCore\DataCore.csproj", "{48CAC363-1B77-4CC8-83C5-9CB266DCBE7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataCore", "DataCore\DataCore.csproj", "{48CAC363-1B77-4CC8-83C5-9CB266DCBE7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.DependencyInjection", "Extensions.DependencyInjection\Extensions.DependencyInjection.csproj", "{C5D437CE-9E7F-459D-A3CB-553D67203E7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{48CAC363-1B77-4CC8-83C5-9CB266DCBE7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48CAC363-1B77-4CC8-83C5-9CB266DCBE7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48CAC363-1B77-4CC8-83C5-9CB266DCBE7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5D437CE-9E7F-459D-A3CB-553D67203E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5D437CE-9E7F-459D-A3CB-553D67203E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5D437CE-9E7F-459D-A3CB-553D67203E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5D437CE-9E7F-459D-A3CB-553D67203E7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
