@@ -19,7 +19,6 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Swaksoft.Domain.Seedwork;
 using Swaksoft.Domain.Seedwork.Specification;
-using Swaksoft.Infrastructure.Crosscutting.Logging;
 using Swaksoft.Domain.Seedwork.Aggregates;
 using Microsoft.EntityFrameworkCore;
 
@@ -93,49 +92,47 @@ namespace Swaksoft.Infrastructure.Data.Seedwork.Repositories
 
         public virtual void Add(TEntity item)
         {
+			if (item == null)
+			{
+				throw new ArgumentNullException(nameof(item));
+			}
 
-            if (item != null)
-                GetSet().Add(item); // add new item in this set
-            else
-            {
-                GetLog().LogInfo("Cannot add null entity into {0} repository", typeof(TEntity).ToString());
-            }
+			GetSet().Add(item); // add new item in this set            
         }
 
         public virtual void Remove(TEntity item)
         {
-            if (item != null)
-            {
-                //attach item if not exist
-                Attach(item);
+			if (item == null)
+			{
+				throw new ArgumentNullException(nameof(item));
+			}
 
-                //set as "removed"
-                GetSet().Remove(item);
-            }
-            else
-            {
-                GetLog().LogInfo("Cannot remove null entity into {0} repository", typeof(TEntity).ToString());
-            }
+			
+            //attach item if not exist
+            Attach(item);
+
+            //set as "removed"
+            GetSet().Remove(item);            
         }
 
         public virtual void TrackItem(TEntity item)
         {
-            if (item != null)
-                Attach(item);
-            else
-            {
-                GetLog().LogInfo("Cannot remove null entity into {0} repository", typeof(TEntity).ToString());
-            }
+			if (item == null)
+			{
+				throw new ArgumentNullException(nameof(item));
+			}
+
+			
+             Attach(item);
         }
       
         public virtual void Modify(TEntity item)
         {
-            if (item != null)
-                SetModified(item);
-            else
-            {
-                GetLog().LogInfo("Cannot modify null item into {0} repository", typeof(TEntity).ToString());
-            }
+			if (item == null) {
+				throw new ArgumentNullException(nameof(item));
+			}
+
+			SetModified(item);
         }
      
         public virtual TEntity Get(int id)
@@ -227,12 +224,6 @@ namespace Swaksoft.Infrastructure.Data.Seedwork.Repositories
         {
             return Context.Set<TEntity>();
         }
-
-        private ILogger GetLog()
-        {
-            return LoggerLocator.CreateLog(GetType());
-        }
-
         #endregion
     }
 }
