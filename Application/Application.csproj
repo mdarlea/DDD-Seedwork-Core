@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>Swaksoft.Application.Seedwork</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Swaksoft.Application.Seedwork.Core</PackageId>
-    <Version>1.0.3.1</Version>
+    <Version>1.0.3.2</Version>
     <Authors>Michelle Darlea</Authors>
     <Product>Swaksoft.Application.Seedwork.Core</Product>
     <Description>Seedwork for the Application Block</Description>
@@ -18,6 +18,7 @@
     <PackageReference Include="AutoMapper" Version="8.1.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.3.0" />
     <PackageReference Include="MediatR" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.2.0" />
     <PackageReference Include="Swaksoft.Domain.Seedwork.Core" Version="1.0.2.2" />
     <PackageReference Include="Swaksoft.Infrastructure.Crosscutting.Core" Version="1.0.0.2" />

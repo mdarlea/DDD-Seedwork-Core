@@ -9,12 +9,13 @@
     <Company>Michelle Darlea</Company>
     <Copyright>Copyright ©  2019</Copyright>
     <PackageTags>Swaksoft</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
     <PackageReference Include="Moq" Version="4.10.1" />
-    <PackageReference Include="Swaksoft.Application.Seedwork.Core" Version="1.0.3.1" />
+    <PackageReference Include="Swaksoft.Application.Seedwork.Core" Version="1.0.3.2" />
   </ItemGroup>
 
 </Project>
