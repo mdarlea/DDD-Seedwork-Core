@@ -2,6 +2,7 @@
 using Domain.Events;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Swaksoft.Application.Seedwork;
 using Swaksoft.Application.Seedwork.Behaviors;
 using Swaksoft.Application.Seedwork.TypeMapping;
@@ -18,7 +19,7 @@ namespace Swaksoft.Extensions.DependencyInjection
 			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidatorBehavior<,>));
 			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
-			services.AddTransient<IDomainMediator, MediatRAdapter>();
+			services.TryAddTransient<IDomainMediator, MediatRAdapter>();
 
 			services.AddTransient<IEntityValidatorFactory, DataAnnotationsEntityValidatorFactory>();
 
