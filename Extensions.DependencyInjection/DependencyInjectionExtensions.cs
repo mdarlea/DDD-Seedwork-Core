@@ -26,7 +26,7 @@ namespace Swaksoft.Extensions.DependencyInjection
 			services.AddAutoMapper(autoMapperAssemblies);
 
 			//sigletons
-			TypeAdapterLocator.SetCurrent(new AutoMapperTypeAdapterFactory());
+			TypeAdapterLocator.SetCurrent(new AutoMapperTypeAdapterFactory(autoMapperAssemblies));
 			EntityValidatorLocator.SetCurrent(new DataAnnotationsEntityValidatorFactory());
 		}
 	}

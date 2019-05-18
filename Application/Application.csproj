@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AssemblyName>Swaksoft.Application.Seedwork</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Swaksoft.Application.Seedwork.Core</PackageId>
-    <Version>1.0.3.2</Version>
+    <Version>1.0.3.5</Version>
     <Authors>Michelle Darlea</Authors>
     <Product>Swaksoft.Application.Seedwork.Core</Product>
     <Description>Seedwork for the Application Block</Description>

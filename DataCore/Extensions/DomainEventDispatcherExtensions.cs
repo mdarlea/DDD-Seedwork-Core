@@ -18,7 +18,7 @@ namespace DataCore.Extensions
 			}
 
 			var domainEntities = ctx.ChangeTracker
-				.Entries<Entity>()
+				.Entries<Entity<int>>()
 				.Where(x => x.Entity.DomainEvents != null && x.Entity.DomainEvents.Any());
 
 			var domainEvents = domainEntities

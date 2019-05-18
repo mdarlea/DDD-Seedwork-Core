@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using AutoMapper;
 using Swaksoft.Infrastructure.Crosscutting.TypeMapping;
 
@@ -12,16 +13,15 @@ namespace Swaksoft.Application.Seedwork.TypeMapping
         /// <summary>
         /// Create a new Automapper type adapter factory
         /// </summary>
-        public AutoMapperTypeAdapterFactory()
+        public AutoMapperTypeAdapterFactory(params Assembly[] autoMapperAssemblies)
         {
-            //scan all assemblies finding Automapper Profile
-            //ToDo: Fix the Unity issue
-          var profiles = AppDomain.CurrentDomain
-                                    .GetAssemblies()
-                                    .Where(a =>
-                                        !a.FullName.Contains("Microsoft.Practices.Unity") &&
-                                        !a.FullName.Contains("AutoMapper") &&
-                                        !a.FullName.Contains("Tweetinvi"))
+			if (autoMapperAssemblies == null)
+			{
+				throw new ArgumentNullException(nameof(autoMapperAssemblies));
+			}
+			//scan all assemblies finding Automapper Profile
+			//ToDo: Fix the Unity issue
+			var profiles = autoMapperAssemblies									
                                     .SelectMany(a => a.GetTypes())
                                     .Where(t => t.BaseType == typeof(AutoMapperProfile));
 

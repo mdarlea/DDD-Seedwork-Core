@@ -4,13 +4,15 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Swaksoft.Application.Seedwork.Behaviors;
+using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Swaksoft.Application.Seedwork.Tests.Extensions
 {
 	public static class MediatorSetupExtensions {
 		public static void SetupRequest<TRequest, TResponse>(this Mock<IMediator> mockMediator, IRequestHandler<TRequest, TResponse> interactor)
-		where TRequest : IRequest<TResponse>
+			where TRequest : IRequest<TResponse>
 		{
 			mockMediator.SetupRequest(interactor, null);
 		}
@@ -18,12 +20,24 @@ namespace Swaksoft.Application.Seedwork.Tests.Extensions
 		public static void SetupRequest<TRequest, TResponse>(this Mock<IMediator> mockMediator, IRequestHandler<TRequest, TResponse> interactor, IValidator<TRequest> validator)
 			where TRequest : IRequest<TResponse>
 		{
+			mockMediator.SetupRequest(async (request, cancellationToken) => await interactor.Handle(request, cancellationToken), validator);
+		}
+
+		public static void SetupRequest<TRequest, TResponse>(this Mock<IMediator> mockMediator, Func<TRequest, CancellationToken, Task<TResponse>> next)
+			where TRequest : IRequest<TResponse>
+		{
+			mockMediator.SetupRequest(next, null);
+		}
+		
+		public static void SetupRequest<TRequest, TResponse>(this Mock<IMediator> mockMediator, Func<TRequest, CancellationToken, Task<TResponse>> next, IValidator<TRequest> validator)
+			where TRequest : IRequest<TResponse>
+		{
 			var behavior = GetValidatorBehavior<TRequest, TResponse>(validator);
 
 			mockMediator.Setup(m => m.Send(It.IsAny<TRequest>(), default))
 				.Returns<TRequest, CancellationToken>(async (request, cancellationToken) =>
 				{
-					return await behavior.Handle(request, cancellationToken, async () => await interactor.Handle(request, cancellationToken));
+					return await behavior.Handle(request, cancellationToken, async () => await next(request, cancellationToken));
 				});
 		}
 
@@ -36,6 +50,18 @@ namespace Swaksoft.Application.Seedwork.Tests.Extensions
 		public static void SetupCommand<TRequest, TResponse>(this Mock<IMediator> mockMediator, IRequestHandler<TRequest, TResponse> interactor, IValidator<TRequest> validator)
 			where TRequest : ICommand<TResponse>
 		{
+			mockMediator.SetupCommand(async (request, cancellationToken) => await interactor.Handle(request, cancellationToken), validator);
+		}
+
+		public static void SetupCommand<TRequest, TResponse>(this Mock<IMediator> mockMediator, Func<TRequest, CancellationToken, Task<TResponse>> next)
+			where TRequest : ICommand<TResponse>
+		{
+			mockMediator.SetupCommand(next, null);
+		}
+		
+		public static void SetupCommand<TRequest, TResponse>(this Mock<IMediator> mockMediator, Func<TRequest, CancellationToken, Task<TResponse>> next, IValidator<TRequest> validator)
+			where TRequest : ICommand<TResponse>
+		{
 			ValidatorBehavior<TRequest, TResponse> validatorBehavior = GetValidatorBehavior<TRequest, TResponse>(validator);
 
 			var behaviorLoggerMock = new Mock<ILogger<LoggingBehavior<TRequest, TResponse>>>();
@@ -45,7 +71,7 @@ namespace Swaksoft.Application.Seedwork.Tests.Extensions
 				.Returns<TRequest, CancellationToken>(async (request, cancellationToken) =>
 				{
 					return await validatorBehavior.Handle(request, cancellationToken,
-						async () => await loggerBehavior.Handle(request, cancellationToken, async () => await interactor.Handle(request, cancellationToken)));
+						async () => await loggerBehavior.Handle(request, cancellationToken, async () => await next(request, cancellationToken)));
 				});
 		}
 
